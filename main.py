@@ -42,11 +42,9 @@ class Zapatos(IProducto):
                             main()
                         else:
                             if cantidad_productos > 0:
-                                while i < cantidad_productos:
-                                    Carrito_compras().agregar_producto(zapatos_productos[eleccion_producto-1], zapatos_precios[eleccion_producto-1])
-                                    i+=1
+                                carrito = Carrito_compras()
                                 for i in range(cantidad_productos):
-                                    Carrito_compras().agregar_producto(zapatos_productos[eleccion_producto], zapatos_precios[eleccion_producto])
+                                    carrito.agregar_producto(zapatos_productos[eleccion_producto-1], zapatos_precios[eleccion_producto-1])
                                 main()
                             else:
                                 print("\nLo siento, no se pueden agregar 0 productos\n")
@@ -88,8 +86,8 @@ class Carrito_compras:
         print("Los productos en su carrito son los siguientes:")
         for elemento in self.productos:
             print(elemento)
-        print(f"\nEl precio total de los productos en el carrito es de {Carrito_compras().calcular_precio()}")
-    
+        print(f"\nEl precio total de los productos en el carrito es de {self.calcular_precio()}")
+
     def calcular_precio(self):
         total = sum(self.precios)
         return total
@@ -120,7 +118,8 @@ def main():
         elif eleccion_main == 4:
             Sacos().seleccionar()
         elif eleccion_main == 5:
-            Carrito_compras().ver_carrito()
+            carrito = Carrito_compras()
+            carrito.ver_carrito()
         elif eleccion_main == 6:
             exit("Gracias por visitar nuestra tienda.")
         else:
