@@ -1,4 +1,5 @@
 import time
+
 #----------------------------------------------------------ZAPATOS--------------------------------------------------------------------------
 class Zapatos:
     producto = ''
@@ -54,6 +55,48 @@ class GalaxyS23(Celulares):
     sistema_operativo = 'Android'
     memoria_ram = '12GB'
 
+#-----------------------------------------------------------CAMISETAS--------------------------------------------------------------------------
+class Camisetas():
+    producto = ''
+    precio = 0
+    talla = ''
+
+class Koaj(Camisetas):
+    producto = 'Koaj'
+    precio = 79
+    talla = 'S'
+
+class AmericanEagle(Camisetas):
+    producto = 'American Eagle'
+    precio = 99
+    talla = 'M'
+
+class PoloClub(Camisetas):
+    producto = 'Polo Club'
+    precio = 149
+    talla = 'XS'
+
+#-----------------------------------------------------------AUDIFONOS--------------------------------------------------------------------------
+class Audifinos():
+    producto = ''
+    precio = 0
+    garantia = ''
+
+class Sony(Audifinos):
+    producto = 'Sony'
+    precio = 399
+    garantia = 'No posee garantia'
+
+class JBL(Audifinos):
+    producto = 'JBL'
+    precio = 599
+    garantia = '6 meses'
+
+class AirPods(Audifinos):
+    producto = 'AirPods'
+    precio = 999
+    garantia = '1 año'
+
 #------------------------------------------------------------INVENTARIO--------------------------------------------------------------------------
 class Inventario:
     def __init__(self):
@@ -61,15 +104,9 @@ class Inventario:
 
     def mostrar_info(self):
         pass
-    
-    """
-    def mostrar_productos(self):
-        for i,x in enumerate(self.pokemons):
-            print(f'{i+1}) {pk.Pokemon(x()).ver_nombre()}')
-    """
 
 class Zapato_Inventario(Inventario):
-    def __init__(self, zapato:Zapatos):
+    def __init__(self, zapato: Zapatos):
         self.zapato = zapato
 
     def mostrar_info(self):
@@ -77,11 +114,8 @@ class Zapato_Inventario(Inventario):
               f'Precio:   ${self.zapato.precio}\n'
               f'Talla:    {self.zapato.talla}')
         
-    def precio(self):
-        return self.zapato.precio
-
 class Celular_Inventario(Inventario):
-    def __init__(self, celular:Celulares):
+    def __init__(self, celular: Celulares):
         self.celular = celular
 
     def mostrar_info(self):
@@ -92,24 +126,71 @@ class Celular_Inventario(Inventario):
               f'Sistema Operativo: {self.celular.sistema_operativo}\n'
               f'Memoria RAM:       {self.celular.memoria_ram}')
         
-    def precio(self):
-        return self.celular.precio
+class Camiseta_Inventario(Inventario):
+    def __init__(self, camiseta: Camisetas):
+        self.camiseta = camiseta
+
+    def mostrar_info(self):
+        print(f'Producto: {self.camiseta.producto}\n'
+              f'Precio:   ${self.camiseta.precio}\n'
+              f'Talla:    {self.camiseta.talla}')
     
+class Audifonos_Inventario(Inventario):
+    def __init__(self, audifonos: Audifinos):
+        self.audifonos = audifonos
+    
+    def mostrar_info(self):
+        print(f'Producto: {self.audifonos.producto}\n'
+              f'Precio:   ${self.audifonos.precio}\n'
+              f'Garantia: {self.audifonos.garantia}')
+        
 #------------------------------------------------------------LISTAS--------------------------------------------------------------------------
 class ListaZapatos():
     def __init__(self):
         self.zapatos = [Adidas, NewBalance, Nike]
 
     def ver_lista_zapatos(self):
-        for i, x in enumerate(self.zapatos):
-            print(f'{i+1} {Zapato_Inventario(x()).mostrar_info()}\n')
+        for i, x in enumerate(self.zapatos, start = 0):
+            print(f'\n{i+1}.')
+            Zapato_Inventario(x()).mostrar_info()
+            print('\n')
+
+class ListaCelulares():
+    def __init__(self):
+        self.celulares = [iPhone11, iPhone13, GalaxyS23]
+
+    def ver_lista_celulares(self):
+        for i, x in enumerate(self.celulares, start = 0):
+            print(f'\n{i+1}.')
+            Celular_Inventario(x()).mostrar_info()
+            print('\n')
+
+class ListaCamisetas():
+    def __init__(self):
+        self.camisetas = [Koaj, AmericanEagle, PoloClub]
+
+    def ver_lista_camisetas(self):
+        for i, x in enumerate(self.camisetas, start = 0):
+            print(f'\n{i+1}.')
+            Camiseta_Inventario(x()).mostrar_info()
+            print('\n')
+
+class ListaAudifonos():
+    def __init__(self):
+        self.audifonos = [Sony, JBL, AirPods]
+
+    def ver_lista_audifonos(self):
+        for i, x in enumerate(self.audifonos, start = 0):
+            print(f'\n{i+1}.')
+            Audifonos_Inventario(x()).mostrar_info()
+            print('\n')
 
 #------------------------------------------------------------CARRITO--------------------------------------------------------------------------
 class Carrito_cliente:
     def __init__(self):
         self.productos = []
 
-    def agregar_producto(self, producto:Inventario, cantidad):
+    def agregar_producto(self, producto: Inventario, cantidad):
         for i in range(cantidad):
             self.productos.append(producto)
 
@@ -124,7 +205,7 @@ class Carrito_cliente:
             precio_total = 0
             for i in self.productos:
                 i.mostrar_info()
-                precio_total += i.precio()
+                precio_total += i.precio
                 print('\n')
             print(f'El precio total del carrito de compras es de ${precio_total}')
 
@@ -135,7 +216,7 @@ def main():
                                      '1. Zapatos\n'
                                      '2. Camisetas\n'
                                      '3. Celulares\n'
-                                     '4. Televisores\n'
+                                     '4. Audifonos\n'
                                      '5. Ver carrito de compras\n'
                                      '6. Salir de la tienda\n'
                                      '¿Cual categoria deseas revisar?\n'))
@@ -148,11 +229,11 @@ def main():
         if eleccion_cliente == 1:
             ListaZapatos().ver_lista_zapatos()
         elif eleccion_cliente == 2:
-            pass
+            ListaCamisetas().ver_lista_camisetas()
         elif eleccion_cliente == 3:
-            pass
+            ListaCelulares().ver_lista_celulares()
         elif eleccion_cliente == 4:
-            pass
+            ListaAudifonos().ver_lista_audifonos()
         elif eleccion_cliente == 5:
             cliente.mostrar_carrito()
         elif eleccion_cliente == 6:
