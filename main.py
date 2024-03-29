@@ -74,8 +74,8 @@ class Sacos(IProducto):
     
 class Carrito_compras:
     def __init__(self):
-        self.productos = ['A','B']
-        self.precios = [4,3]
+        self.productos = []
+        self.precios = []
 
     def agregar_producto(self, producto, valor):
         self.productos.append(producto)
