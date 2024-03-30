@@ -1,6 +1,5 @@
 import time
-
-#----------------------------------------------------------ZAPATOS--------------------------------------------------------------------------
+#
 class Zapatos:
     producto = ''
     precio = 0
@@ -20,8 +19,7 @@ class Nike(Zapatos):
     producto = 'Nike'
     precio = 199
     talla = '8'
-
-#-----------------------------------------------------------CELULARES--------------------------------------------------------------------------
+#
 class Celulares:
     producto = ''
     precio = 0
@@ -38,7 +36,6 @@ class iPhone11(Celulares):
     sistema_operativo = 'IOS'
     memoria_ram = '4GB'
 
-
 class iPhone13(Celulares):
     producto = 'iPhone 13'
     precio = 3089
@@ -54,8 +51,7 @@ class GalaxyS23(Celulares):
     procesador = 'Samsung Qualcomm SM8550'
     sistema_operativo = 'Android'
     memoria_ram = '12GB'
-
-#-----------------------------------------------------------CAMISETAS--------------------------------------------------------------------------
+#
 class Camisetas():
     producto = ''
     precio = 0
@@ -75,8 +71,7 @@ class PoloClub(Camisetas):
     producto = 'Polo Club'
     precio = 149
     talla = 'XS'
-
-#-----------------------------------------------------------AUDIFONOS--------------------------------------------------------------------------
+#
 class Audifinos():
     producto = ''
     precio = 0
@@ -96,8 +91,7 @@ class AirPods(Audifinos):
     producto = 'AirPods'
     precio = 999
     garantia = '1 año'
-
-#------------------------------------------------------------INVENTARIO--------------------------------------------------------------------------
+#
 class Inventario:
     def __init__(self):
         pass
@@ -107,7 +101,7 @@ class Inventario:
 
     def precio(self):
         pass
-
+    
 class Zapato_Inventario(Inventario):
     def __init__(self, zapato: Zapatos):
         self.zapato = zapato
@@ -157,9 +151,8 @@ class Audifonos_Inventario(Inventario):
               f'Garantia: {self.audifonos.garantia}')
         
     def precio(self):
-        return self.audifonos.precio
-        
-#------------------------------------------------------------LISTAS--------------------------------------------------------------------------
+        return self.audifonos.precio     
+#
 class ListaZapatos():
     def __init__(self):
         self.zapatos = [Adidas(), NewBalance(), Nike()]
@@ -199,8 +192,7 @@ class ListaAudifonos():
             print(f'\n{i+1}.')
             Audifonos_Inventario(x).mostrar_info()
             print('\n')
-
-#------------------------------------------------------------CARRITO--------------------------------------------------------------------------
+#
 class Carrito_cliente:
     def __init__(self):
         self.productos = []
@@ -263,7 +255,7 @@ def main():
                         time.sleep(1)
                 except ValueError:
                     print('\nERROR\n'
-                        'Volviendo al inicio...\n')
+                          'Volviendo al inicio...\n')
                     time.sleep(1)            
             elif eleccion_cliente == 2:
                 ListaCamisetas().ver_lista_camisetas()
@@ -293,7 +285,7 @@ def main():
                         time.sleep(1)
                 except ValueError:
                     print('\nERROR\n'
-                        'Volviendo al inicio...\n')
+                          'Volviendo al inicio...\n')
                     time.sleep(1)
             elif eleccion_cliente == 3:
                 ListaCelulares().ver_lista_celulares()
@@ -323,7 +315,7 @@ def main():
                         time.sleep(1)
                 except ValueError:
                     print('\nERROR\n'
-                        'Volviendo al inicio...\n')
+                          'Volviendo al inicio...\n')
                     time.sleep(1)
             elif eleccion_cliente == 4:
                 ListaAudifonos().ver_lista_audifonos()
@@ -353,7 +345,7 @@ def main():
                         time.sleep(1)
                 except ValueError:
                     print('\nERROR\n'
-                        'Volviendo al inicio...\n')
+                          'Volviendo al inicio...\n')
                     time.sleep(1)
             elif eleccion_cliente == 5:
                 cliente.mostrar_carrito()
@@ -365,8 +357,8 @@ def main():
                 time.sleep(1)
         except ValueError:
             print('\nERROR\n'
-                'Volviendo al inicio...\n')
+                  'Volviendo al inicio...\n')
             time.sleep(1)
-            
+      
 if __name__ == "__main__":
     main()
