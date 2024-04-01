@@ -478,10 +478,12 @@ class Carrito_cliente:
         else:
             precio_total = 0
             print('\nEste es el resumen de tu compra:\n')
+            time.sleep(1)
             for i in self.productos:
                 i.mostrar_info()
                 precio_total += i.precio()
                 print('\n')
+                time.sleep(1.5)
             print(f'El precio total del carrito de compras es de ${precio_total}\n')
 
     def terminar_compra(self):
@@ -493,14 +495,14 @@ class Carrito_cliente:
         else:
             try:
                 decision_final = int(input('\n¿Deseas finalizar tu compra?\n'
-                                       '1. Si\n'
-                                       '2. No\n'))
+                                           '1. Si\n'
+                                           '2. No\n'))
                 if decision_final == 1:
                     self.mostrar_carrito()
                     correo = input('\nIngresa tu correo electronico:\n')
                     direccion = input('\nIngresa la direccion a donde se va a enviar tu pedido:\n')
-                    print(f'\nEl link de pago se envio a: {correo}\n'
-                        f'Una vez el pago este confirmado se procedera con el envio de tus productos a: {direccion}\n')
+                    print(f'\nEl link de pago se envio a: {correo.lower()}\n'
+                        f'Una vez el pago este confirmado se procedera con el envio de tus productos a: {direccion.lower()}\n')
                     exit('\nGracias por visitar nuestra tienda, tu pedido pronto estara en camino a tu direccion\n')
                 elif decision_final == 2:
                     pass
