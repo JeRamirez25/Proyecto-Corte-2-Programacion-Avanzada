@@ -456,8 +456,8 @@ class ListaTelevisores:
 
 """
 SE CREA LA CLASE CARRITO DE COMPRAS EN LA CUAL MEDIANTE FUNCIONES
-PODEMOS HACER QUE SE AGREGUEN PRODUCTOS AL CARRITO DE COMPRAS Y
-MOSTRAR LOS PRODUCTOS QUE YA HAN SIDO AGREGADOS
+PODEMOS HACER QUE SE AGREGUEN PRODUCTOS AL CARRITO DE COMPRAS, MOSTRAR
+LOS PRODUCTOS QUE YA HAN SIDO AGREGADOS Y EL PROCESO DE FINALIZAR LA COMPRA
 """
 
 class Carrito_cliente:
@@ -477,16 +477,43 @@ class Carrito_cliente:
             time.sleep(2)
         else:
             precio_total = 0
-            print('\n')
+            print('\nEste es el resumen de tu compra:\n')
             for i in self.productos:
                 i.mostrar_info()
                 precio_total += i.precio()
                 print('\n')
             print(f'El precio total del carrito de compras es de ${precio_total}\n')
 
+    def terminar_compra(self):
+        if len(self.productos) <= 0:
+            print('\nCarrito de compras vacio\n'
+                  'Te invitamos a revisar las diferentes categorias que tiene nuestra tienda\n'
+                  'Volviendo al inicio...\n')
+            time.sleep(2)
+        else:
+            try:
+                decision_final = int(input('\n¿Deseas finalizar tu compra?\n'
+                                       '1. Si\n'
+                                       '2. No\n'))
+                if decision_final == 1:
+                    self.mostrar_carrito()
+                    correo = input('\nIngresa tu correo electronico:\n')
+                    direccion = input('\nIngresa la direccion a donde se va a enviar tu pedido:\n')
+                    print(f'\nEl link de pago se envio a: {correo}\n'
+                        f'Una vez el pago este confirmado se procedera con el envio de tus productos a: {direccion}\n')
+                    exit('\nGracias por visitar nuestra tienda, tu pedido pronto estara en camino a tu direccion\n')
+                elif decision_final == 2:
+                    pass
+            except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
+                pass
+
 """
 SE CREAN DIFERENTES FUNCIONES QUE COMPLEMENTAN A LA FUNCION
-MAIN PARA EL FUNCIONAMIENTO DEL CODIGO
+MAIN, EN ESTAS FUNCIONES IMPLEMENTA MANEJO DE EXCEPCIONES
+PARA MINIMIZAR CUALQUIER ERROR COMETIDO POR EL USUARIO
+DURANTE LA EJECUCION DEL PROGRAMA
 """
 
 def eleccion_zapatos():
@@ -498,12 +525,24 @@ def eleccion_zapatos():
         if eleccion_zapatos == 1:
             try:
                 eleccion_zapatos_producto = int(input('\nElija un tipo de zapatos:\n'))-1
-                try:
-                    eleccion_zapatos_cantidad = int(input('\n¿Cuantos pares de zapatos necesita?\n'))
-                    cliente.agregar_producto(Zapato_Inventario(ListaZapatos().zapatos[eleccion_zapatos_producto]), eleccion_zapatos_cantidad)
-                except ValueError:
+                if eleccion_zapatos_producto < 0 or eleccion_zapatos_producto > len(ListaCamisetas().camisetas)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_zapatos_cantidad = int(input('\n¿Cuantos pares de zapatos necesita?\n'))
+                        if eleccion_zapatos_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Zapato_Inventario(ListaZapatos().zapatos[eleccion_zapatos_producto]), eleccion_zapatos_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                            'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
         elif eleccion_zapatos == 2:
             print('Volviendo al inicio...\n')
@@ -516,7 +555,7 @@ def eleccion_zapatos():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-                'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 def eleccion_camisetas():
@@ -528,12 +567,24 @@ def eleccion_camisetas():
         if eleccion_camisetas == 1:
             try:
                 eleccion_camisetas_producto = int(input('\nElija un tipo de camiseta:\n'))-1
-                try:
-                    eleccion_camisetas_cantidad = int(input('\n¿Cuantas camisetas necesitas?\n'))
-                    cliente.agregar_producto(Camiseta_Inventario(ListaCamisetas().camisetas[eleccion_camisetas_producto]), eleccion_camisetas_cantidad)
-                except ValueError:
+                if eleccion_camisetas_producto < 0 or eleccion_camisetas_producto > len(ListaCamisetas().camisetas)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_camisetas_cantidad = int(input('\n¿Cuantas camisetas necesitas?\n'))
+                        if eleccion_camisetas_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Camiseta_Inventario(ListaCamisetas().camisetas[eleccion_camisetas_producto]), eleccion_camisetas_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                            'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
         elif eleccion_camisetas == 2:
             print('\nVolviendo al inicio...\n')
@@ -558,12 +609,24 @@ def eleccion_celulares():
         if eleccion_celulares == 1:
             try:
                 eleccion_celulares_producto = int(input('\nElija el tipo del celular que desea:\n'))-1
-                try:
-                    eleccion_celulares_cantidad = int(input('\n¿Cuantos celulares necesitas?\n'))
-                    cliente.agregar_producto(Celular_Inventario(ListaCelulares().celulares[eleccion_celulares_producto]), eleccion_celulares_cantidad)
-                except ValueError:
+                if eleccion_celulares_producto < 0 or eleccion_celulares_producto > len(ListaCelulares().celulares)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_celulares_cantidad = int(input('\n¿Cuantos celulares necesitas?\n'))
+                        if eleccion_celulares_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Celular_Inventario(ListaCelulares().celulares[eleccion_celulares_producto]), eleccion_celulares_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                              'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
         elif eleccion_celulares == 2:
             print('\nVolviendo al inicio...\n')
@@ -588,12 +651,24 @@ def eleccion_audifonos():
         if eleccion_audifonos == 1:
             try:
                 eleccion_audifonos_producto = int(input('\nElija el tipo de audifonos que desea:\n'))-1
-                try:
-                    eleccion_audifonos_cantidad = int(input('\n¿Cuantos audifonos necesitas?\n'))
-                    cliente.agregar_producto(Audifonos_Inventario(ListaAudifonos().audifonos[eleccion_audifonos_producto]), eleccion_audifonos_cantidad)
-                except ValueError:
+                if eleccion_audifonos_producto < 0 or eleccion_audifonos_producto > len(ListaAudifonos().audifonos)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_audifonos_cantidad = int(input('\n¿Cuantos audifonos necesitas?\n'))
+                        if eleccion_audifonos_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Audifonos_Inventario(ListaAudifonos().audifonos[eleccion_audifonos_producto]), eleccion_audifonos_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                              'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
         elif eleccion_audifonos == 2:
             print('\nVolviendo al inicio...\n')
@@ -618,12 +693,24 @@ def eleccion_televisores():
         if eleccion_televisores == 1:
             try:
                 eleccion_televisores_producto = int(input('\nElija el tipo de televisor que desea:\n'))-1
-                try:
-                    eleccion_televisores_cantidad = int(input('\n¿Cuantos televisores necesitas?\n'))
-                    cliente.agregar_producto(Televisores_Inventario(ListaTelevisores().televisores[eleccion_televisores_producto]), eleccion_televisores_cantidad)
-                except ValueError:
+                if eleccion_televisores_producto < 0 or eleccion_televisores_producto > len(ListaTelevisores().televisores)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_televisores_cantidad = int(input('\n¿Cuantos televisores necesitas?\n'))
+                        if eleccion_televisores_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Televisores_Inventario(ListaTelevisores().televisores[eleccion_televisores_producto]), eleccion_televisores_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                              'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
         elif eleccion_televisores == 2:
             print('\nVolviendo al inicio...\n')
@@ -648,17 +735,29 @@ def eleccion_neveras():
         if eleccion_nevera == 1:
             try:
                 eleccion_nevera_producto = int(input('\nElija el tipo de nevera que desea:\n'))-1
-                try:
-                    eleccion_nevera_cantidad = int(input('\n¿Cuantas neveras necesitas?\n'))
-                    cliente.agregar_producto(Neveras_Inventario(ListaNeveras().neveras[eleccion_nevera_producto]), eleccion_nevera_cantidad)
-                except ValueError:
+                if eleccion_nevera_producto < 0 or eleccion_nevera_producto > len(ListaNeveras().neveras)-1:
+                    print('\nERROR')
                     pass
+                else:
+                    try:
+                        eleccion_nevera_cantidad = int(input('\n¿Cuantas neveras necesitas?\n'))
+                        if eleccion_nevera_cantidad <= 0:
+                            print('\nERROR')
+                            pass
+                        else:
+                            cliente.agregar_producto(Neveras_Inventario(ListaNeveras().neveras[eleccion_nevera_producto]), eleccion_nevera_cantidad)
+                    except ValueError:
+                        print('\nERROR\n'
+                              'Volviendo al inicio...\n')
+                        pass
             except ValueError:
+                print('\nERROR\n'
+                      'Volviendo al inicio...\n')
                 pass
-        elif eleccion_audifonos == 2:
+        elif eleccion_nevera == 2:
             print('\nVolviendo al inicio...\n')
             time.sleep(2)
-        elif eleccion_audifonos == 3:
+        elif eleccion_nevera == 3:
             time.sleep(1)
             exit('\nGracias por visitar nuestra tienda.\n')
         else:
@@ -666,14 +765,12 @@ def eleccion_neveras():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-            'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 """
 SE CREA UNA FUNCION MAIN PARA PODER INICIALIZAR LA EJECUCION DEL
-CODIGO Y DE LA TIENDA VIRTUAL, EN LA CUAL SE IMPLEMENTA MANEJO DE
-EXCEPCIONES PARA MINIMIZAR CUALQUIER ERROR COMETIDO POR EL USUARIO
-DURANTE LA EJECUCION DEL PROGRAMA
+CODIGO DE LA TIENDA VIRTUAL
 """
 
 def main():
@@ -687,7 +784,8 @@ def main():
                                          '5. Televisores\n'
                                          '6. Neveras\n'
                                          '7. Ver carrito de compras\n'
-                                         '8. Salir de la tienda\n'
+                                         '8. Finalizar compra\n'
+                                         '9. Salir de la tienda\n'
                                          '¿Cual categoria deseas revisar?\n'))
             if eleccion_cliente == 1:
                 ListaZapatos().ver_lista_zapatos()
@@ -710,6 +808,8 @@ def main():
             elif eleccion_cliente == 7:
                 cliente.mostrar_carrito()
             elif eleccion_cliente == 8:
+                cliente.terminar_compra()
+            elif eleccion_cliente == 9:
                 time.sleep(1)
                 exit('\nGracias por visitar nuestra tienda.\n')
             else:
