@@ -502,7 +502,7 @@ class Carrito_cliente:
                     correo = input('\nIngresa tu correo electronico:\n')
                     direccion = input('\nIngresa la direccion a donde se va a enviar tu pedido:\n')
                     print(f'\nEl link de pago se envio a: {correo.lower()}\n'
-                        f'Una vez el pago este confirmado se procedera con el envio de tus productos a: {direccion.lower()}\n')
+                          f'Una vez el pago este confirmado se procedera con el envio de tus productos a: {direccion.lower()}\n')
                     exit('\nGracias por visitar nuestra tienda, tu pedido pronto estara en camino a tu direccion\n')
                 elif decision_final == 2:
                     pass
@@ -521,9 +521,9 @@ DURANTE LA EJECUCION DEL PROGRAMA
 def eleccion_zapatos():
     try:
         eleccion_zapatos = int(input('\n¿Deseas agregar algun producto de esta categoria al carrito de compras?\n'
-                                        '1. Si\n'
-                                        '2. No\n'
-                                        '3. Salir de la tienda\n'))
+                                     '1. Si\n'
+                                     '2. No\n'
+                                     '3. Salir de la tienda\n'))
         if eleccion_zapatos == 1:
             try:
                 eleccion_zapatos_producto = int(input('\nElija un tipo de zapatos:\n'))-1
@@ -540,7 +540,7 @@ def eleccion_zapatos():
                             cliente.agregar_producto(Zapato_Inventario(ListaZapatos().zapatos[eleccion_zapatos_producto]), eleccion_zapatos_cantidad)
                     except ValueError:
                         print('\nERROR\n'
-                            'Volviendo al inicio...\n')
+                              'Volviendo al inicio...\n')
                         pass
             except ValueError:
                 print('\nERROR\n'
@@ -563,9 +563,9 @@ def eleccion_zapatos():
 def eleccion_camisetas():
     try:
         eleccion_camisetas = int(input('\n¿Deseas agregar algun producto de esta categoria al carrito de compras?\n'
-                                        '1. Si\n'
-                                        '2. No\n'
-                                        '3. Salir de la tienda\n'))
+                                       '1. Si\n'
+                                       '2. No\n'
+                                       '3. Salir de la tienda\n'))
         if eleccion_camisetas == 1:
             try:
                 eleccion_camisetas_producto = int(input('\nElija un tipo de camiseta:\n'))-1
@@ -582,7 +582,7 @@ def eleccion_camisetas():
                             cliente.agregar_producto(Camiseta_Inventario(ListaCamisetas().camisetas[eleccion_camisetas_producto]), eleccion_camisetas_cantidad)
                     except ValueError:
                         print('\nERROR\n'
-                            'Volviendo al inicio...\n')
+                              'Volviendo al inicio...\n')
                         pass
             except ValueError:
                 print('\nERROR\n'
@@ -599,15 +599,15 @@ def eleccion_camisetas():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-                'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 def eleccion_celulares():
     try:
         eleccion_celulares = int(input('\n¿Deseas agregar algun producto de esta categoria al carrito de compras?\n'
-                                        '1. Si\n'
-                                        '2. No\n'
-                                        '3. Salir de la tienda\n'))
+                                       '1. Si\n'
+                                       '2. No\n'
+                                       '3. Salir de la tienda\n'))
         if eleccion_celulares == 1:
             try:
                 eleccion_celulares_producto = int(input('\nElija el tipo del celular que desea:\n'))-1
@@ -641,15 +641,15 @@ def eleccion_celulares():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-                'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 def eleccion_audifonos():
     try:
         eleccion_audifonos = int(input('\n¿Deseas agregar algun producto de esta categoria al carrito de compras?\n'
-                                        '1. Si\n'
-                                        '2. No\n'
-                                        '3. Salir de la tienda\n'))
+                                       '1. Si\n'
+                                       '2. No\n'
+                                       '3. Salir de la tienda\n'))
         if eleccion_audifonos == 1:
             try:
                 eleccion_audifonos_producto = int(input('\nElija el tipo de audifonos que desea:\n'))-1
@@ -683,7 +683,7 @@ def eleccion_audifonos():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-                'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 def eleccion_televisores():
@@ -725,7 +725,7 @@ def eleccion_televisores():
             time.sleep(1)
     except ValueError:
         print('\nERROR\n'
-                'Volviendo al inicio...\n')
+              'Volviendo al inicio...\n')
         time.sleep(1)
 
 def eleccion_neveras():
